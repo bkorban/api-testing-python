@@ -21,41 +21,17 @@ def measure_time(function):
 
 class Constants:
     id = 'id'
-    latitude = 'latitude'
-    longitude = 'longitude'
-    name = 'name'
-    city = 'city'
-    country = 'country'
-    provider = 'provider'
-    evses = 'evses'
-    eves_group_name = 'groupName'
-    eves_connectors = 'connectors'
-    type = 'type'
-    max_kw = 'maxKw'
+    title = 'title'
+    body = 'body'
+    userId = 'userId'
 
 
 class DataModel:
-    station_data_length = 1
-    id_value = 8617
-    latitude_value = 60.164102
-    longitude_value = 24.899113
-    name_value = 'Test station advanced pricing'
-    city_value = 'Helsinki'
-    country_value = 'FI'
-    provider_value = 'Virta'
-    evses_length = 2
-    evses_id = 8616
-    eves_group_name = ''
-    evses_connector_type = "Mennekes"
-    evses_connector_max_kw = 0
-
+    posts_data_length = 100
 
 class RequestParams:
-    lat_min_key = 'latMin'
-    lat_max_key = 'latMax'
-    long_min_key = 'longMin'
-    long_max_key = 'longMax'
-    lat_min_value = 60.164101
-    lat_max_value = 60.164104
-    long_min_value = 24
-    long_max_value = 25
+    user_ID_key = 'userId',
+    user_ID_value = 101
+
+
+
