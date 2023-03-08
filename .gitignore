@@ -1,0 +1,13 @@
+.pytest_cache
+__pycache__
+/api-testing-python/tests/__pycache__
+tests_output.log
+
+
+
+
+
+
+
+
+
