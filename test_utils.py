@@ -20,18 +20,25 @@ def measure_time(function):
 
 
 class Constants:
-    id = 'id'
-    title = 'title'
-    body = 'body'
-    userId = 'userId'
+    bookingid: 'bookingid'
+    booking: 'booking'
+    firstname: 'firstname'
+    lastname: 'lastname'
+    totalprice: 'totalprice'
+    depositpaid: 'depositpaid'
+    bookingdates: 'bookingdates'
+    checkin: 'checkin'
+    checkout: 'checkout'
+    additionalneeds: 'additionalneeds'
+    
 
 
 class DataModel:
-    posts_data_length = 100
+    bookings_data_length = None
 
 class RequestParams:
-    user_ID_key = 'userId',
-    user_ID_value = 101
+    booking_ID_key = 'bookingid',
+    booking_ID_value = 1
 
 
 

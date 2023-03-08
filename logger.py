@@ -14,11 +14,11 @@ class Logger:
     def log_request(cls, request_type, url, params, response_status_code, data, headers):
         text = '\n'.join([
             f'Executed {request_type.__name__.upper()} request. ',
-            f'URL: {url} ,',
-            f'PARAMETERS: {params} ,',
-            f'RESPONSE STATUS CODE: {response_status_code} ,'
-            f'DATA SENT: {data} ,'
-            f'HEADERS: {headers} .'
+            f'URL: {url}, ',
+            f'PARAMETERS: {params}, ',
+            f'RESPONSE STATUS CODE: {response_status_code}, '
+            f'DATA SENT: {data}, '
+            f'HEADERS: {headers}.'
         ])
         cls.log(text)
 
