@@ -69,7 +69,7 @@ class TestBookings:
                      f'Status code of {ENDPOINT_BOOKING} enpoint')
 
     # Acceptance testing
-    
+
     # Should create new booking, return code 200 and new booking details in json
     @staticmethod
     @decorate_test
@@ -171,3 +171,27 @@ class TestBookings:
         assert_equal(status_code, StatusCodes.STATUS_200,
                      f"Status code of {ENDPOINT_BOOKING}/{TestBookings.new_booking_id} endpoint")
         assert_equal(responseBody_toJson['firstname'], 'William', 'firstname')
+
+    # send DELETE request to delete previously created booking
+    @staticmethod
+    @decorate_test
+    def test_booking_api_delete_booking():
+        headers = {'Content-Type': 'application/json',
+                   'Cookie': f"token={TestBookings.token}"}
+        status_code, _ = HTTPSession.send_request(
+            RequestTypes.DELETE, f"{ENDPOINT_BOOKING}/{TestBookings.new_booking_id}", headers=headers)
+        assert_equal(status_code, StatusCodes.STATUS_201,
+                     f"Status code of {ENDPOINT_BOOKING}/{TestBookings.new_booking_id} endpoint")
+
+    # send GET request to check if the recently deleted booking was successfully deleted
+
+    @staticmethod
+    @decorate_test
+    def test_booking_api_gets_recenlty_deleted_booking_by_id():
+        headers = request_headers
+        status_code, _ = HTTPSession.send_request(
+            RequestTypes.GET, f"{ENDPOINT_BOOKING}/{TestBookings.new_booking_id}", headers=headers)
+        response_body = _
+        assert_equal(status_code, StatusCodes.Status_404,
+                     f"Status code of {ENDPOINT_BOOKING}/{TestBookings.new_booking_id} endpoint")
+        assert_equal(response_body, 'Not Found', 'Response body')

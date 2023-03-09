@@ -30,15 +30,12 @@ class Constants:
     checkin: 'checkin'
     checkout: 'checkout'
     additionalneeds: 'additionalneeds'
-    
 
 
 class DataModel:
     bookings_data_length = None
 
+
 class RequestParams:
     booking_ID_key = 'bookingid',
     booking_ID_value = 1
-
-
-
