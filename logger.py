@@ -18,7 +18,14 @@ class Logger:
             f'PARAMETERS: {params}, ',
             f'RESPONSE STATUS CODE: {response_status_code}, '
             f'DATA SENT: {data}, '
-            f'HEADERS: {headers}.'
+            f'HEADERS: {headers}. '
+        ])
+        cls.log(text)
+
+    @classmethod
+    def log_response(cls, response):
+        text = '\n'.join([
+            f'RESPONSE CONTENT: {response}.'
         ])
         cls.log(text)
 
@@ -49,6 +56,7 @@ class Logger:
     def write_to_file(cls, text, with_date):
         current_date_n_time = datetime.now()
         if with_date:
-            text = '\n'.join([f'{current_date_n_time} - {l}' for l in text.split('\n')])
+            text = '\n'.join(
+                [f'{current_date_n_time} - {l}' for l in text.split('\n')])
         with open('tests_output.log', 'a', encoding='utf-8') as f:
             f.write(text)
