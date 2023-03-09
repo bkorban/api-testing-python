@@ -2,8 +2,8 @@
 
 <p align="center">  
 This application is built to do REST API testing using python scripts along with the use of Pytest module as our testing framework.
-<br>
-API being tested <a> https://restful-booker.herokuapp.com/apidoc/</a>
+<br><br>
+API being tested: <a href='https://restful-booker.herokuapp.com/apidoc/' target="_blank">restful-booker</a>
 </p>
 
 <p align="center">
