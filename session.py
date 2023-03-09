@@ -42,3 +42,4 @@ class Endpoints:
 class StatusCodes:
     STATUS_200 = '200'  # succeeded
     STATUS_201 = '201'  # created
+    Status_404 = '404'  # not found
