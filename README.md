@@ -2,15 +2,13 @@
 
 <p align="center">  
 This application is built to do REST API testing using python scripts along with the use of Pytest module as our testing framework.
+<br>
+API being tested <a> https://restful-booker.herokuapp.com/apidoc/</a>
 </p>
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
 </p>
-
-# Demo
-![Page-Object-Model-Demo-Gif.gif](demo/pyrestapitest_demo.gif)
-
 
 ## Languages, libraries and tools used
 
