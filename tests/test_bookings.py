@@ -4,14 +4,50 @@ from test_utils import decorate_test, Constants, RequestParams, DataModel
 
 ENDPOINT_BOOKING = Endpoints.BOOKING
 ENDPOINT_HEALTHCHECK = Endpoints.PING
+ENDPOINT_AUTH = Endpoints.AUTH
 
 params = {RequestParams.booking_ID_key: RequestParams.booking_ID_value}
-data = {}
+request_headers = {'Content-Type': 'application/json',
+                   'Accept': 'application/json'}
+
+bookind_data = {
+    "firstname": "James",
+    "lastname": "Bond",
+    "totalprice": 250,
+    "depositpaid": True,
+    "bookingdates": {
+                "checkin": "2023-03-08",
+                "checkout": "2023-03-30"
+    },
+    "additionalneeds": "Breakfast, Lunch and Dinner"
+}
+
+updated_booking_data = {
+    "firstname": "James",
+    "lastname": "Bond",
+    "totalprice": 250,
+    "depositpaid": True,
+    "bookingdates": {
+                "checkin": "2023-03-08",
+                "checkout": "2023-03-30"
+    },
+    "additionalneeds": "No additional needs"
+}
+
+partial_updated_booking_data = {
+    "firstname": "William"
+}
+
+booking_token_data = {
+    "username": "admin",
+    "password": "password123"
+}
 
 
 class TestBookings:
 
     new_booking_id = None  # class attribute to store the new booking ID
+    token = None  # class attribute to store a token
 
     # health check endpoint to confirm whether API is up and running
     @staticmethod
@@ -26,31 +62,20 @@ class TestBookings:
     @staticmethod
     @decorate_test
     def test_booking_api_status_code():
+        headers = request_headers
         status_code, _ = HTTPSession.send_request(
-            RequestTypes.GET, ENDPOINT_BOOKING)
+            RequestTypes.GET, ENDPOINT_BOOKING, headers=headers)
         assert_equal(status_code, StatusCodes.STATUS_200,
                      f'Status code of {ENDPOINT_BOOKING} enpoint')
 
-    # acceptance testing
-    # Feature: Create new booking
-        # Scenario: User successfully creates new booking
-
+    # Acceptance testing
+    
     # Should create new booking, return code 200 and new booking details in json
     @staticmethod
     @decorate_test
     def test_booking_api_creates_new_booking():
-        request_body = {
-            "firstname": "James",
-            "lastname": "Bond",
-            "totalprice": 250,
-            "depositpaid": True,
-            "bookingdates": {
-                "checkin": "2023-03-08",
-                "checkout": "2023-03-30"
-            },
-            "additionalneeds": "Breakfast, Lunch and Dinner"
-        }
-        headers = {'Content-Type': 'application/json'}
+        request_body = bookind_data
+        headers = request_headers
         status_code, data = HTTPSession.send_request(
             RequestTypes.POST, ENDPOINT_BOOKING, data=json.dumps(request_body), headers=headers)
         responseBody_toJson = json.loads(data)
@@ -75,11 +100,11 @@ class TestBookings:
         if TestBookings.new_booking_id is not None:
             print("New booking ID:", TestBookings.new_booking_id)
 
+    # send GET request to retrieve the new booking
     @staticmethod
     @decorate_test
     def test_booking_api_gets_booking_by_id():
-        # send GET request to retrieve the new booking
-        headers = {'Content-Type': 'application/json'}
+        headers = request_headers
 
         status_code, data = HTTPSession.send_request(
             RequestTypes.GET, f"{ENDPOINT_BOOKING}/{TestBookings.new_booking_id}", headers=headers)
@@ -96,3 +121,53 @@ class TestBookings:
                      ['checkout'], '2023-03-30', 'checkout')
         assert_equal(responseBody_toJson['additionalneeds'],
                      'Breakfast, Lunch and Dinner', 'additionalneeds')
+
+    # create a token for access to the PUT and DELETE booking
+    @staticmethod
+    @decorate_test
+    def test_booking_api_creates_token():
+        headers = request_headers
+        request_body = booking_token_data
+        status_code, data = HTTPSession.send_request(
+            RequestTypes.POST, ENDPOINT_AUTH, data=json.dumps(request_body), headers=headers)
+        responseBody_toJson = json.loads(data)
+
+        assert_equal(status_code, StatusCodes.STATUS_200,
+                     f"Status code of {ENDPOINT_AUTH} enpoint")
+        # store the token in the instance variable
+        TestBookings.token = responseBody_toJson['token']
+        if TestBookings.token is not None:
+            print("New token:", TestBookings.token)
+
+    # send PUT request to update previously created booking
+    @staticmethod
+    @decorate_test
+    def test_booking_api_update_current_booking():
+        headers = {'Content-Type': 'application/json',
+                   'Accept': 'application/json',
+                   'Cookie': f"token={TestBookings.token}"}
+        request_body = updated_booking_data
+        status_code, data = HTTPSession.send_request(
+            RequestTypes.PUT, f"{ENDPOINT_BOOKING}/{TestBookings.new_booking_id}", data=json.dumps(request_body), headers=headers)
+        responseBody_toJson = json.loads(data)
+
+        assert_equal(status_code, StatusCodes.STATUS_200,
+                     f"Status code of {ENDPOINT_BOOKING}/{TestBookings.new_booking_id} endpoint")
+        assert_equal(responseBody_toJson['additionalneeds'],
+                     'No additional needs', 'additionalneeds')
+
+    # send PATCH request to update previously created booking with a partial payload
+    @staticmethod
+    @decorate_test
+    def test_booking_api_partial_update_booking():
+        headers = {'Content-Type': 'application/json',
+                   'Accept': 'application/json',
+                   'Cookie': f"token={TestBookings.token}"}
+        request_body = partial_updated_booking_data
+        status_code, data = HTTPSession.send_request(
+            RequestTypes.PATCH, f"{ENDPOINT_BOOKING}/{TestBookings.new_booking_id}", data=json.dumps(request_body), headers=headers)
+        responseBody_toJson = json.loads(data)
+
+        assert_equal(status_code, StatusCodes.STATUS_200,
+                     f"Status code of {ENDPOINT_BOOKING}/{TestBookings.new_booking_id} endpoint")
+        assert_equal(responseBody_toJson['firstname'], 'William', 'firstname')
