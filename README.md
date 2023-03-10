@@ -56,9 +56,10 @@ pip install jsonpath
   * __Open the terminal and run__
 
 <br />
-  ```sh
-  allure --version
-  ```
+
+```sh
+allure --version
+```
 
 <br />
 
@@ -93,26 +94,26 @@ __To see the reports, open the Project window, and then right-click then click o
 
 __To run and generate Allure reports__
 
-  __In the project directory generate a folder to save allure reports; use the command below to automatically generate this__
-  ```sh
-  allure generate
-  ```
+__In the project directory generate a folder to save allure reports; use the command below to automatically generate this__
+```sh
+allure generate
+```
 
-  __This will create a folder named _allure-report_ in your project directory__
+__This will create a folder named _allure-report_ in your project directory__
 
-  __Now you can run your tests with pytest runner by specifying the directory path to save your allure report__
-  ```sh
-  pytest --alluredir=allure-report/
-  ```
+__Now you can run your tests with pytest runner by specifying the directory path to save your allure report__
+```sh
+pytest --alluredir=allure-report/
+```
 
-  __Once test execution completes, all the test results would get stored in allure-report directory__
+__Once test execution completes, all the test results would get stored in allure-report directory__
 
-  __The allure report can be viewed in the browser with the command__
-  ```sh
-  allure serve allure-report/
-  ```
+__The allure report can be viewed in the browser with the command__
+```sh
+allure serve allure-report/
+```
 
-  __Link to [allure pytest](https://pypi.org/project/allure-pytest/)__
+__Link to [allure pytest](https://pypi.org/project/allure-pytest/)__
 
 # Prerequisites
 * __Python__
