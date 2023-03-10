@@ -48,10 +48,14 @@ pip install jsonpath
  ```
 
  __Next download the latest allure package zip from [allure-framework GitHub repo](https://github.com/allure-framework/allure2/releases)__
-  __Unzip the downloaded zip file__
-  __Copyt the path till bin__
-  __Add it to the path environment variable__
-  __Open the terminal and rin__
+ <br />
+
+  * __Unzip the downloaded zip file__ 
+  * __Copy the path till bin__
+  * __Add it to the path environment variable__
+  * __Open the terminal and run__
+
+<br />
   ```sh
   allure --version
   ```
