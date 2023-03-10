@@ -41,6 +41,7 @@ pip install jsonpath
 ```
 
 <br />
+
  __Install Allure with Pytest__:
  ```sh
  pip install allure-pytest
@@ -85,6 +86,7 @@ __To see the reports, open the Project window, and then right-click then click o
 
 <br />
 <br />
+
 __To run and generate Allure reports__
 
   __In the project directory generate a folder to save allure reports; use the command below to automatically generate this__
