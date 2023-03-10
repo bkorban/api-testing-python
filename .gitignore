@@ -3,6 +3,7 @@ __pycache__
 /api-testing-python/tests/__pycache__
 tests_output.log
 env
+reporting/
 
 
 

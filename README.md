@@ -17,8 +17,10 @@ API being tested: <a href='https://restful-booker.herokuapp.com/apidoc/' target=
 * __[Requests](https://docs.python-requests.org/en/master/)__
 * __[JsonPath](https://pypi.org/project/jsonpath/)__
 * __[Pycharm](https://www.jetbrains.com/pycharm/download/)__
+* __[Allure](https://pypi.org/project/allure-pytest/)__
 
 Above Features are used to make code simple, generic, understandable, clean and easily maintainable for future development.
+Above features inlcude as well Allure reporting for test reporting
 
 ## Installation
 
@@ -37,6 +39,20 @@ pip install requests
 ```sh
 pip install jsonpath
 ```
+ __Install Allure with Pytest__:
+ ```sh
+ pip install allure-pytest
+ ```
+
+ __Next download the latest allure package zip from [allure-framework GitHub repo](https://github.com/allure-framework/allure2/releases)__
+  __Unzip the downloaded zip file__
+  __Copyt the path till bin__
+  __Add it to the path environment variable__
+  __Open the terminal and rin__
+  ```sh
+  allure --version
+  ```
+
 ## Automated tests
 
 __To run a test, you can simply write the following command on Terminal__:
@@ -62,7 +78,30 @@ pytest --html==YOUR_REPORT_FILE_NAME.html
 
 __To see the reports, open the Project window, and then right-click then click on refresh then right-click on __StationReport.html__ to open the file on the default browser.__
 
-![Page-Object-Model-Demo-Gif.gif](demo/pyrestapitest-report-file.png)
+
+
+__To run and generate Allure reports__
+
+  __In the project directory generate a folder to save allure reports; use the command below to automatically generate this__
+  ```sh
+  allure generate
+  ```
+
+  __This will create a folder named _allure-report_ in your project directory__
+
+  __Now you can run your tests with pytest runner by specifying the directory path to save your allure report__
+  ```sh
+  pytest --alluredir=allure-report/
+  ```
+
+  __Once test execution completes, all the test results would get stored in allure-report directory__
+
+  __The allure report can be viewed in the browser with the command__
+  ```sh
+  allure serve allure-report/
+  ```
+
+  __Link to [allure pytest](https://pypi.org/project/allure-pytest/)__
 
 # Prerequisites
 * __Python__
