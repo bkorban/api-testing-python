@@ -39,6 +39,8 @@ pip install requests
 ```sh
 pip install jsonpath
 ```
+
+<br />
  __Install Allure with Pytest__:
  ```sh
  pip install allure-pytest
@@ -52,6 +54,8 @@ pip install jsonpath
   ```sh
   allure --version
   ```
+
+<br />
 
 ## Automated tests
 
@@ -79,7 +83,8 @@ pytest --html==YOUR_REPORT_FILE_NAME.html
 __To see the reports, open the Project window, and then right-click then click on refresh then right-click on __StationReport.html__ to open the file on the default browser.__
 
 
-
+<br />
+<br />
 __To run and generate Allure reports__
 
   __In the project directory generate a folder to save allure reports; use the command below to automatically generate this__
