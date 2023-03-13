@@ -17,3 +17,6 @@ def assert_equal(value, reference, entity_name, compare_types=False):
         expression=f'{entity_name} actual value [{value}] is equal to expected value [{reference}]',
         result=result
     )
+
+
+

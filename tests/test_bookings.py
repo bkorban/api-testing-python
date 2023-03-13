@@ -176,8 +176,9 @@ class TestBookings:
     @staticmethod
     @decorate_test
     def test_booking_api_delete_booking():
-        headers = {'Content-Type': 'application/json',
-                   'Cookie': f"token={TestBookings.token}"}
+        # headers = {'Content-Type': 'application/json',
+        #            'Cookie': f"token={TestBookings.token}"}
+        headers = {'Content-Type': 'application/json'}
         status_code, _ = HTTPSession.send_request(
             RequestTypes.DELETE, f"{ENDPOINT_BOOKING}/{TestBookings.new_booking_id}", headers=headers)
         assert_equal(status_code, StatusCodes.STATUS_201,
@@ -187,7 +188,7 @@ class TestBookings:
 
     @staticmethod
     @decorate_test
-    def test_booking_api_gets_recenlty_deleted_booking_by_id():
+    def test_booking_api_gets_recently_deleted_booking_by_id():
         headers = request_headers
         status_code, _ = HTTPSession.send_request(
             RequestTypes.GET, f"{ENDPOINT_BOOKING}/{TestBookings.new_booking_id}", headers=headers)
